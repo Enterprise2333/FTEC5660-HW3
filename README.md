@@ -224,6 +224,19 @@ The agent scored **60/60 point verdicts** on the 20 public companies, with a **1
 
 The first-half comparison is explanatory evidence for point 6; its verdict follows the stated full-year rule. Employee relations are judged from testimony, so changes in wording can affect the model's interpretation. If financial or interview evidence cannot be obtained, the agent records that failure in the summary and returns a conservative FAIL for the affected point. That fallback is an execution safeguard, not proof of poor company performance.
 
+### Additional few-shot test
+
+I designed twelve synthetic company cases based on the homework's margin calculations and employee interview examples. The financial cases cover margins equal to the industry median, zero margins, narrowing losses, and a company whose margin is above the industry median but declining. The interviews cover negation, a resolved historical dispute, and positive management statements contradicted by poor working conditions. Expected verdicts were fixed before testing and were not supplied to the agent.
+
+I compared the existing zero-shot prompt with a two-shot version containing one positive and one negative employee interview example. These two demonstrations were separate from the twelve scored cases. Both versions used the same production analysis function, synthetic SQL and interview tools, and `deepseek-v4-flash` at temperature zero. Each version was run three times, alternating the order of the two versions. Points 5 and 6 still used fixed calculations; the demonstrations affected only the model's interpretation of point 7.
+
+| Condition | Point 5 correct | Point 6 correct | Point 7 correct | All verdicts correct | Balanced accuracy |
+|---|---:|---:|---:|---:|---:|
+| Existing zero-shot prompt | 36/36 | 36/36 | 36/36 | 108/108 | 100.0% |
+| Two-shot interview prompt | 36/36 | 36/36 | 36/36 | 108/108 | 100.0% |
+
+Each run correctly classified all 36 point verdicts from the twelve cases. No final error or timeout fallback was recorded. Adding demonstrations changed accuracy by zero percentage points, so I retained the existing production prompt. The three runs reuse the same twelve cases and do not represent thirty-six independent companies. These clear, authored examples verify consistency with the stated rules; they do not measure agreement with the hidden grading rules or establish reliability on all ambiguous interviews. The synthetic scores are reported separately from the public benchmark. The [detailed test report](FEW_SHOT_EVALUATION.md) lists every case, and [few_shot_results.json](few_shot_results.json) preserves the predictions and summaries.
+
 ### Reproducing the run
 
 Use Python 3.10 or newer. From a fresh clone, create a virtual environment, install `requirements.txt`, put your own `DEEPSEEK_API_KEY` in an ignored `.env`, then run:
@@ -236,5 +249,5 @@ The command generates `results.csv` and prints the balanced score. It uses the r
 
 Run `python -m unittest test_resilience -v` for the offline regression checks. These tests use simulated tools and model responses, require no API key, and cover request retries, company and batch deadlines, cancellation, and independent financial evidence failures.
 
-The separate [few-shot evaluation](FEW_SHOT_EVALUATION.md) compares the production prompt with two demonstration interviews on twelve authored test cases. Both conditions scored 100% across three runs; the test found no accuracy improvement from adding demonstrations. Run `python few_shot_test.py` to repeat this API-backed experiment. Its synthetic results are separate from the public-company benchmark.
+Run `python few_shot_test.py` to repeat the API-backed few-shot comparison. It writes `few_shot_results.json` and leaves the public-company `results.csv` unchanged.
 
