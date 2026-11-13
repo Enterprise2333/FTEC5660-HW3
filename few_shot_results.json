@@ -1,0 +1,2504 @@
+{
+  "created_at": "2026-11-13T12:02:31.081504+00:00",
+  "model": "deepseek-v4-flash",
+  "examples": [
+    [
+      "Staff have predictable shifts, paid training, and a trusted grievance process.",
+      {
+        "verdict": "PASS",
+        "reason": "Predictable work and trusted grievance handling support good relations."
+      }
+    ],
+    [
+      "Supervisors withhold earned wages and punish workers who report injuries.",
+      {
+        "verdict": "FAIL",
+        "reason": "Withheld wages and retaliation indicate serious labor problems."
+      }
+    ]
+  ],
+  "cases": [
+    [
+      10,
+      20,
+      15,
+      "Pay is fair, most colleagues stay for years, and the supervisor resolves complaints promptly.",
+      [
+        "PASS",
+        "PASS",
+        "PASS"
+      ]
+    ],
+    [
+      20,
+      10,
+      15,
+      "Management calls this a family, but compulsory unpaid overtime is routine and colleagues keep resigning.",
+      [
+        "FAIL",
+        "FAIL",
+        "FAIL"
+      ]
+    ],
+    [
+      10,
+      10,
+      10,
+      "We can decline extra shifts without being punished. Safety concerns are fixed and relations are respectful.",
+      [
+        "PASS",
+        "PASS",
+        "PASS"
+      ]
+    ],
+    [
+      10,
+      15,
+      20,
+      "The bonus is attractive, but broken safety equipment has been ignored for months and staff fear speaking up.",
+      [
+        "FAIL",
+        "PASS",
+        "FAIL"
+      ]
+    ],
+    [
+      20,
+      15,
+      10,
+      "There was a dispute last year. It was resolved through consultation; pay is fair and people now choose to stay.",
+      [
+        "PASS",
+        "FAIL",
+        "PASS"
+      ]
+    ],
+    [
+      -10,
+      -5,
+      10,
+      "The company praises wellbeing publicly. In practice supervisors humiliate workers and requests for rest are dismissed.",
+      [
+        "FAIL",
+        "PASS",
+        "FAIL"
+      ]
+    ],
+    [
+      0,
+      0,
+      0,
+      "I cannot judge corporate strategy. On working conditions, we have fair pay, safe shifts and managers who listen.",
+      [
+        "FAIL",
+        "PASS",
+        "PASS"
+      ]
+    ],
+    [
+      -5,
+      5,
+      4,
+      "A new cafeteria is nice, but wages are frequently late and experienced workers leave because complaints go nowhere.",
+      [
+        "PASS",
+        "PASS",
+        "FAIL"
+      ]
+    ],
+    [
+      25,
+      20,
+      18,
+      "Demand is seasonal, but extra work is voluntary and paid. Employee representatives agree schedules with management.",
+      [
+        "PASS",
+        "FAIL",
+        "PASS"
+      ]
+    ],
+    [
+      8,
+      6,
+      9,
+      "We do not have good relations with supervisors. Turnover is high and exhausted workers are pressured to skip breaks.",
+      [
+        "FAIL",
+        "FAIL",
+        "FAIL"
+      ]
+    ],
+    [
+      8,
+      12,
+      15,
+      "One colleague left for a shorter commute, not because of our employer. Conditions are safe, wages fair and grievances handled properly.",
+      [
+        "FAIL",
+        "PASS",
+        "PASS"
+      ]
+    ],
+    [
+      15,
+      18,
+      12,
+      "The handbook promises respect. Workers who challenge unsafe workloads get worse shifts, and complaints remain unresolved.",
+      [
+        "PASS",
+        "PASS",
+        "FAIL"
+      ]
+    ]
+  ],
+  "runs": [
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "seconds": 4.06,
+      "metrics": {
+        "5": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "6": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "7": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "all": {
+          "correct": 36,
+          "total": 36,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        }
+      }
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "seconds": 33.66,
+      "metrics": {
+        "5": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "6": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "7": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "all": {
+          "correct": 36,
+          "total": 36,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        }
+      }
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "seconds": 3.36,
+      "metrics": {
+        "5": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "6": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "7": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "all": {
+          "correct": 36,
+          "total": 36,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        }
+      }
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "seconds": 3.39,
+      "metrics": {
+        "5": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "6": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "7": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "all": {
+          "correct": 36,
+          "total": 36,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        }
+      }
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "seconds": 3.27,
+      "metrics": {
+        "5": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "6": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "7": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "all": {
+          "correct": 36,
+          "total": 36,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        }
+      }
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "seconds": 3.08,
+      "metrics": {
+        "5": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "6": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "7": {
+          "correct": 12,
+          "total": 12,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        },
+        "all": {
+          "correct": 36,
+          "total": 36,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0
+        }
+      }
+    }
+  ],
+  "records": [
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 11,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, proper grievance handling, and no employer-caused turnover. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 11,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, proper grievance handling, and no employer-caused turnover. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 11,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, proper grievance handling, and no employer-caused turnover. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 12,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: The testimony describes retaliation against workers who challenge unsafe workloads and unresolved complaints, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 12,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: The testimony describes retaliation against workers who challenge unsafe workloads and unresolved complaints, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 12,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: The testimony describes retaliation against workers who challenge unsafe workloads and unresolved complaints, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 5,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony shows a past dispute was resolved through consultation, pay is fair, and staff now choose to stay. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 5,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony shows a past dispute was resolved through consultation, pay is fair, and staff now choose to stay. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 5,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony shows a past dispute was resolved through consultation, pay is fair, and staff now choose to stay. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 7,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: The testimony describes fair pay, safe shifts, and responsive managers, indicating good working conditions and constructive staff relations. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 7,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: The testimony describes fair pay, safe shifts, and responsive managers, indicating good working conditions and constructive staff relations. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 7,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: The testimony describes fair pay, safe shifts, and responsive managers, indicating good working conditions and constructive staff relations. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 10,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: The testimony describes poor supervisor relations, high turnover, and pressure to skip breaks, indicating substantial ongoing labor problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 10,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: The testimony describes poor supervisor relations, high turnover, and pressure to skip breaks, indicating substantial ongoing labor problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 10,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: The testimony describes poor supervisor relations, high turnover, and pressure to skip breaks, indicating substantial ongoing labor problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 1,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes fair pay, stable staffing, and prompt resolution of complaints, indicating constructive staff relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 1,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes fair pay, stable staffing, and prompt resolution of complaints, indicating constructive staff relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 1,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes fair pay, stable staffing, and prompt resolution of complaints, indicating constructive staff relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 8,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Wages are frequently late and complaints go nowhere, causing experienced workers to leave. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 8,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Wages are frequently late and complaints go nowhere, causing experienced workers to leave. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 8,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Wages are frequently late and complaints go nowhere, causing experienced workers to leave. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 2,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Compulsory unpaid overtime is routine and colleagues keep resigning, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 2,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Compulsory unpaid overtime is routine and colleagues keep resigning, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 2,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Compulsory unpaid overtime is routine and colleagues keep resigning, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 4,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: Broken safety equipment ignored for months and staff fear speaking up indicate substantial ongoing labor and personnel problems. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 4,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: Broken safety equipment ignored for months and staff fear speaking up indicate substantial ongoing labor and personnel problems. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 4,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: Broken safety equipment ignored for months and staff fear speaking up indicate substantial ongoing labor and personnel problems. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 9,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: The testimony describes voluntary paid extra work and employee representatives agreeing schedules with management, indicating fair treatment and constructive staff relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 9,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: The testimony describes voluntary paid extra work and employee representatives agreeing schedules with management, indicating fair treatment and constructive staff relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 9,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: The testimony describes voluntary paid extra work and employee representatives agreeing schedules with management, indicating fair treatment and constructive staff relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 3,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Testimony describes fair treatment, addressed safety concerns, and respectful staff relations. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 3,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Testimony describes fair treatment, addressed safety concerns, and respectful staff relations. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 3,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Testimony describes fair treatment, addressed safety concerns, and respectful staff relations. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 6,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Testimony describes supervisors humiliating workers and dismissing rest requests, indicating substantial ongoing labor and personnel problems. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 6,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Testimony describes supervisors humiliating workers and dismissing rest requests, indicating substantial ongoing labor and personnel problems. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 1,
+      "case": 6,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Testimony describes supervisors humiliating workers and dismissing rest requests, indicating substantial ongoing labor and personnel problems. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 11,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, and properly handled grievances, indicating constructive labor relations. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 11,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, and properly handled grievances, indicating constructive labor relations. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 11,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, and properly handled grievances, indicating constructive labor relations. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 12,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: Retaliation for challenging unsafe workloads and unresolved complaints indicate substantial ongoing labor relations problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 12,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: Retaliation for challenging unsafe workloads and unresolved complaints indicate substantial ongoing labor relations problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 12,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: Retaliation for challenging unsafe workloads and unresolved complaints indicate substantial ongoing labor relations problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 5,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: A past dispute was resolved through consultation, pay is fair, and staff now choose to stay. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 5,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: A past dispute was resolved through consultation, pay is fair, and staff now choose to stay. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 5,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: A past dispute was resolved through consultation, pay is fair, and staff now choose to stay. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 7,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: The testimony describes fair pay, safe shifts, and responsive managers, indicating good labor and personnel relations. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 7,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: The testimony describes fair pay, safe shifts, and responsive managers, indicating good labor and personnel relations. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 7,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: The testimony describes fair pay, safe shifts, and responsive managers, indicating good labor and personnel relations. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 10,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: Poor supervisor relations, high turnover, and pressure to skip breaks show substantial ongoing personnel problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 10,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: Poor supervisor relations, high turnover, and pressure to skip breaks show substantial ongoing personnel problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 10,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: Poor supervisor relations, high turnover, and pressure to skip breaks show substantial ongoing personnel problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 1,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Fair pay, long retention, and prompt complaint resolution indicate constructive labor and personnel relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 1,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Fair pay, long retention, and prompt complaint resolution indicate constructive labor and personnel relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 1,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Fair pay, long retention, and prompt complaint resolution indicate constructive labor and personnel relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 8,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Frequent late wages and unaddressed complaints show substantial ongoing labor and personnel problems. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 8,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Frequent late wages and unaddressed complaints show substantial ongoing labor and personnel problems. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 8,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Frequent late wages and unaddressed complaints show substantial ongoing labor and personnel problems. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 2,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Compulsory unpaid overtime and frequent resignations show substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 2,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Compulsory unpaid overtime and frequent resignations show substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 2,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Compulsory unpaid overtime and frequent resignations show substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 4,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: Ignored safety equipment and fear of speaking up indicate substantial ongoing labor relations problems. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 4,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: Ignored safety equipment and fear of speaking up indicate substantial ongoing labor relations problems. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 4,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: Ignored safety equipment and fear of speaking up indicate substantial ongoing labor relations problems. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 9,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: Voluntary paid overtime and worker-management schedule agreement show constructive labor relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 9,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: Voluntary paid overtime and worker-management schedule agreement show constructive labor relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 9,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: Voluntary paid overtime and worker-management schedule agreement show constructive labor relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 3,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes respectful relations, safe working conditions, and no punishment for declining extra shifts. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 3,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes respectful relations, safe working conditions, and no punishment for declining extra shifts. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 3,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes respectful relations, safe working conditions, and no punishment for declining extra shifts. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 6,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Supervisors humiliate workers and dismiss rest requests, showing substantial ongoing labor relations problems. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 6,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Supervisors humiliate workers and dismiss rest requests, showing substantial ongoing labor relations problems. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 1,
+      "case": 6,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Supervisors humiliate workers and dismiss rest requests, showing substantial ongoing labor relations problems. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 2,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Compulsory unpaid overtime and frequent resignations indicate substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 2,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Compulsory unpaid overtime and frequent resignations indicate substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 2,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Compulsory unpaid overtime and frequent resignations indicate substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 3,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Staff can decline extra shifts safely, safety concerns are addressed, and relations are respectful. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 3,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Staff can decline extra shifts safely, safety concerns are addressed, and relations are respectful. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 3,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Staff can decline extra shifts safely, safety concerns are addressed, and relations are respectful. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 4,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: Ignored safety equipment and fear of speaking up indicate substantial ongoing labor relations problems. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 4,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: Ignored safety equipment and fear of speaking up indicate substantial ongoing labor relations problems. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 4,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: Ignored safety equipment and fear of speaking up indicate substantial ongoing labor relations problems. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 12,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: Retaliation against workers who raise safety concerns and unresolved complaints indicate substantial ongoing labor relations problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 12,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: Retaliation against workers who raise safety concerns and unresolved complaints indicate substantial ongoing labor relations problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 12,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: Retaliation against workers who raise safety concerns and unresolved complaints indicate substantial ongoing labor relations problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 8,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Late wages and unaddressed complaints show substantial ongoing labor relations problems. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 8,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Late wages and unaddressed complaints show substantial ongoing labor relations problems. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 8,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Late wages and unaddressed complaints show substantial ongoing labor relations problems. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 7,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: The testimony describes fair pay, safe shifts, and responsive managers. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 7,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: The testimony describes fair pay, safe shifts, and responsive managers. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 7,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: The testimony describes fair pay, safe shifts, and responsive managers. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 10,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: Poor supervisor relations, high turnover, and pressure to skip breaks show substantial ongoing labor problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 10,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: Poor supervisor relations, high turnover, and pressure to skip breaks show substantial ongoing labor problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 10,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: Poor supervisor relations, high turnover, and pressure to skip breaks show substantial ongoing labor problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 5,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: A past dispute was resolved through consultation, pay is fair, and staff now choose to stay. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 5,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: A past dispute was resolved through consultation, pay is fair, and staff now choose to stay. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 5,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: A past dispute was resolved through consultation, pay is fair, and staff now choose to stay. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 6,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Supervisors humiliate workers and dismiss rest requests despite public wellbeing claims, indicating substantial ongoing labor relations problems. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 6,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Supervisors humiliate workers and dismiss rest requests despite public wellbeing claims, indicating substantial ongoing labor relations problems. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 6,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Supervisors humiliate workers and dismiss rest requests despite public wellbeing claims, indicating substantial ongoing labor relations problems. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 1,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Fair pay, long retention, and prompt complaint resolution indicate outstanding labor and personnel relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 1,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Fair pay, long retention, and prompt complaint resolution indicate outstanding labor and personnel relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 1,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Fair pay, long retention, and prompt complaint resolution indicate outstanding labor and personnel relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 11,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, and properly handled grievances, indicating good labor and personnel relations. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 11,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, and properly handled grievances, indicating good labor and personnel relations. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 11,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, and properly handled grievances, indicating good labor and personnel relations. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 9,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: Voluntary paid extra work and employee-representative schedule agreement indicate constructive labor relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 9,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: Voluntary paid extra work and employee-representative schedule agreement indicate constructive labor relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 2,
+      "case": 9,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: Voluntary paid extra work and employee-representative schedule agreement indicate constructive labor relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 2,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Compulsory unpaid overtime and frequent resignations indicate substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 2,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Compulsory unpaid overtime and frequent resignations indicate substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 2,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Compulsory unpaid overtime and frequent resignations indicate substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 3,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes fair scheduling, responsive safety fixes, and respectful staff relations. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 3,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes fair scheduling, responsive safety fixes, and respectful staff relations. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 3,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes fair scheduling, responsive safety fixes, and respectful staff relations. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 4,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: The testimony describes ongoing safety problems and staff fear of speaking up, indicating substantial labor and personnel relations issues. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 4,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: The testimony describes ongoing safety problems and staff fear of speaking up, indicating substantial labor and personnel relations issues. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 4,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: The testimony describes ongoing safety problems and staff fear of speaking up, indicating substantial labor and personnel relations issues. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 12,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: The testimony describes retaliation against workers who challenge unsafe workloads and unresolved complaints, indicating substantial ongoing labor-relations problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 12,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: The testimony describes retaliation against workers who challenge unsafe workloads and unresolved complaints, indicating substantial ongoing labor-relations problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 12,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: The testimony describes retaliation against workers who challenge unsafe workloads and unresolved complaints, indicating substantial ongoing labor-relations problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 8,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Wages are frequently late and complaints go nowhere, causing experienced workers to leave. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 8,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Wages are frequently late and complaints go nowhere, causing experienced workers to leave. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 8,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Wages are frequently late and complaints go nowhere, causing experienced workers to leave. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 7,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: The testimony describes fair pay, safe shifts, and responsive managers, indicating good working conditions and constructive staff relations. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 7,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: The testimony describes fair pay, safe shifts, and responsive managers, indicating good working conditions and constructive staff relations. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 7,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: The testimony describes fair pay, safe shifts, and responsive managers, indicating good working conditions and constructive staff relations. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 10,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: The testimony describes poor supervisor relations, high turnover, and pressure to skip breaks, indicating substantial ongoing labor problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 10,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: The testimony describes poor supervisor relations, high turnover, and pressure to skip breaks, indicating substantial ongoing labor problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 10,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: The testimony describes poor supervisor relations, high turnover, and pressure to skip breaks, indicating substantial ongoing labor problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 5,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony shows a resolved dispute, fair pay, and improved retention, indicating constructive staff relations. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 5,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony shows a resolved dispute, fair pay, and improved retention, indicating constructive staff relations. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 5,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony shows a resolved dispute, fair pay, and improved retention, indicating constructive staff relations. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 6,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Supervisors humiliate workers and dismiss rest requests, indicating substantial ongoing labor and personnel problems. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 6,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Supervisors humiliate workers and dismiss rest requests, indicating substantial ongoing labor and personnel problems. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 6,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Supervisors humiliate workers and dismiss rest requests, indicating substantial ongoing labor and personnel problems. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 1,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes fair pay, stable staff, and prompt resolution of complaints, indicating good personnel relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 1,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes fair pay, stable staff, and prompt resolution of complaints, indicating good personnel relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 1,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes fair pay, stable staff, and prompt resolution of complaints, indicating good personnel relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 11,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, proper grievance handling, and a colleague leaving for commute rather than employer issues. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 11,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, proper grievance handling, and a colleague leaving for commute rather than employer issues. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 11,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, proper grievance handling, and a colleague leaving for commute rather than employer issues. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 9,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: Seasonal work is voluntary and paid, and employee representatives agree schedules with management, indicating fair treatment and constructive staff relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 9,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: Seasonal work is voluntary and paid, and employee representatives agree schedules with management, indicating fair treatment and constructive staff relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 2,
+      "case": 9,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: Seasonal work is voluntary and paid, and employee representatives agree schedules with management, indicating fair treatment and constructive staff relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 5,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes a resolved dispute, fair pay, and improved retention through consultation. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 5,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes a resolved dispute, fair pay, and improved retention through consultation. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 5,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes a resolved dispute, fair pay, and improved retention through consultation. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 10,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: The testimony describes poor supervisor relations, high turnover, and pressure to skip breaks, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 10,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: The testimony describes poor supervisor relations, high turnover, and pressure to skip breaks, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 10,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: The testimony describes poor supervisor relations, high turnover, and pressure to skip breaks, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 3,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes fair treatment, responsive safety fixes, and respectful staff relations. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 3,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes fair treatment, responsive safety fixes, and respectful staff relations. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 3,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes fair treatment, responsive safety fixes, and respectful staff relations. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 4,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: Broken safety equipment has been ignored for months and staff fear speaking up, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 4,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: Broken safety equipment has been ignored for months and staff fear speaking up, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 4,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: Broken safety equipment has been ignored for months and staff fear speaking up, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 11,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, properly handled grievances, and a departure unrelated to the employer. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 11,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, properly handled grievances, and a departure unrelated to the employer. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 11,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, properly handled grievances, and a departure unrelated to the employer. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 2,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes compulsory unpaid overtime and frequent resignations, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 2,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes compulsory unpaid overtime and frequent resignations, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 2,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes compulsory unpaid overtime and frequent resignations, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 1,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes fair pay, stable staffing, and prompt resolution of complaints, indicating good labor and personnel relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 1,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes fair pay, stable staffing, and prompt resolution of complaints, indicating good labor and personnel relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 1,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes fair pay, stable staffing, and prompt resolution of complaints, indicating good labor and personnel relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 7,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: The testimony describes fair pay, safe shifts, and responsive managers, indicating good working conditions and constructive staff relations. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 7,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: The testimony describes fair pay, safe shifts, and responsive managers, indicating good working conditions and constructive staff relations. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 7,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: The testimony describes fair pay, safe shifts, and responsive managers, indicating good working conditions and constructive staff relations. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 8,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Late wages and unaddressed complaints cause experienced workers to leave, showing substantial ongoing personnel problems. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 8,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Late wages and unaddressed complaints cause experienced workers to leave, showing substantial ongoing personnel problems. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 8,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Late wages and unaddressed complaints cause experienced workers to leave, showing substantial ongoing personnel problems. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 12,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: The testimony describes retaliation against workers who challenge unsafe workloads and unresolved complaints, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 12,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: The testimony describes retaliation against workers who challenge unsafe workloads and unresolved complaints, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 12,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: The testimony describes retaliation against workers who challenge unsafe workloads and unresolved complaints, indicating substantial ongoing labor and personnel problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 9,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: Seasonal work is voluntary and paid, and employee representatives agree schedules with management, indicating fair treatment and constructive staff relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 9,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: Seasonal work is voluntary and paid, and employee representatives agree schedules with management, indicating fair treatment and constructive staff relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 9,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: Seasonal work is voluntary and paid, and employee representatives agree schedules with management, indicating fair treatment and constructive staff relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 6,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes supervisors humiliating workers and dismissing rest requests, indicating substantial ongoing labor and personnel problems. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 6,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes supervisors humiliating workers and dismissing rest requests, indicating substantial ongoing labor and personnel problems. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "zero_shot",
+      "trial": 3,
+      "case": 6,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes supervisors humiliating workers and dismissing rest requests, indicating substantial ongoing labor and personnel problems. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 5,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The dispute was resolved through consultation, pay is fair, and staff choose to stay, indicating constructive labor relations. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 5,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The dispute was resolved through consultation, pay is fair, and staff choose to stay, indicating constructive labor relations. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 5,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The dispute was resolved through consultation, pay is fair, and staff choose to stay, indicating constructive labor relations. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 10,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: Poor supervisor relations, high turnover, and pressure to skip breaks show substantial ongoing labor problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 10,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: Poor supervisor relations, high turnover, and pressure to skip breaks show substantial ongoing labor problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 10,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 6.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 9.00%. Employee evidence: Poor supervisor relations, high turnover, and pressure to skip breaks show substantial ongoing labor problems. H1 2026 margin was 6.00% versus 6.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 3,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes respectful relations, no punishment for declining shifts, and responsive safety fixes. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 3,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes respectful relations, no punishment for declining shifts, and responsive safety fixes. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 3,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: The testimony describes respectful relations, no punishment for declining shifts, and responsive safety fixes. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 4,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: Ignored broken safety equipment and staff fear of speaking up indicate substantial ongoing labor relations problems. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 4,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: Ignored broken safety equipment and staff fear of speaking up indicate substantial ongoing labor relations problems. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 4,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 15.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 20.00%. Employee evidence: Ignored broken safety equipment and staff fear of speaking up indicate substantial ongoing labor relations problems. H1 2026 margin was 15.00% versus 15.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 11,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, proper grievance handling, and no employer-related turnover. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 11,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, proper grievance handling, and no employer-related turnover. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 11,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 12.00%. FY2024 operating margin was 8.00%. The Synthetic industry industry median was 15.00%. Employee evidence: The testimony describes safe conditions, fair wages, proper grievance handling, and no employer-related turnover. H1 2026 margin was 12.00% versus 12.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 2,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Compulsory unpaid overtime and frequent resignations indicate substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 2,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Compulsory unpaid overtime and frequent resignations indicate substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 2,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 10.00%. FY2024 operating margin was 20.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Compulsory unpaid overtime and frequent resignations indicate substantial ongoing labor and personnel problems. H1 2026 margin was 10.00% versus 10.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 1,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Fair pay, long tenure, and prompt complaint resolution indicate constructive labor relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 1,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Fair pay, long tenure, and prompt complaint resolution indicate constructive labor relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 1,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 10.00%. The Synthetic industry industry median was 15.00%. Employee evidence: Fair pay, long tenure, and prompt complaint resolution indicate constructive labor relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 7,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: Fair pay, safe shifts, and responsive managers indicate good labor and personnel relations. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 7,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: Fair pay, safe shifts, and responsive managers indicate good labor and personnel relations. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 7,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 0.00%. FY2024 operating margin was 0.00%. The Synthetic industry industry median was 0.00%. Employee evidence: Fair pay, safe shifts, and responsive managers indicate good labor and personnel relations. H1 2026 margin was 0.00% versus 0.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 8,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Frequent late wages and ignored complaints show substantial ongoing labor relations problems. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 8,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Frequent late wages and ignored complaints show substantial ongoing labor relations problems. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 8,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 5.00%. FY2024 operating margin was -5.00%. The Synthetic industry industry median was 4.00%. Employee evidence: Frequent late wages and ignored complaints show substantial ongoing labor relations problems. H1 2026 margin was 5.00% versus 5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 12,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: Retaliation against workers who challenge unsafe workloads and unresolved complaints indicate substantial ongoing labor relations problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 12,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: Retaliation against workers who challenge unsafe workloads and unresolved complaints indicate substantial ongoing labor relations problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 12,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 18.00%. FY2024 operating margin was 15.00%. The Synthetic industry industry median was 12.00%. Employee evidence: Retaliation against workers who challenge unsafe workloads and unresolved complaints indicate substantial ongoing labor relations problems. H1 2026 margin was 18.00% versus 18.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 9,
+      "point": 5,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: Voluntary paid overtime and employee-representative schedule agreements indicate constructive labor relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 9,
+      "point": 6,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: Voluntary paid overtime and employee-representative schedule agreements indicate constructive labor relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 9,
+      "point": 7,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was 20.00%. FY2024 operating margin was 25.00%. The Synthetic industry industry median was 18.00%. Employee evidence: Voluntary paid overtime and employee-representative schedule agreements indicate constructive labor relations. H1 2026 margin was 20.00% versus 20.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 6,
+      "point": 5,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Supervisors humiliate workers and dismiss rest requests, showing poor treatment and staff relations. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 6,
+      "point": 6,
+      "expected": "PASS",
+      "predicted": "PASS",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Supervisors humiliate workers and dismiss rest requests, showing poor treatment and staff relations. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    },
+    {
+      "mode": "two_shot",
+      "trial": 3,
+      "case": 6,
+      "point": 7,
+      "expected": "FAIL",
+      "predicted": "FAIL",
+      "correct": true,
+      "summary": "FY2025 operating margin was -5.00%. FY2024 operating margin was -10.00%. The Synthetic industry industry median was 10.00%. Employee evidence: Supervisors humiliate workers and dismiss rest requests, showing poor treatment and staff relations. H1 2026 margin was -5.00% versus -5.00% in H1 2025."
+    }
+  ]
+}

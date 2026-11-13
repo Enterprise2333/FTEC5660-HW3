@@ -236,3 +236,5 @@ The command generates `results.csv` and prints the balanced score. It uses the r
 
 Run `python -m unittest test_resilience -v` for the offline regression checks. These tests use simulated tools and model responses, require no API key, and cover request retries, company and batch deadlines, cancellation, and independent financial evidence failures.
 
+The separate [few-shot evaluation](FEW_SHOT_EVALUATION.md) compares the production prompt with two demonstration interviews on twelve authored test cases. Both conditions scored 100% across three runs; the test found no accuracy improvement from adding demonstrations. Run `python few_shot_test.py` to repeat this API-backed experiment. Its synthetic results are separate from the public-company benchmark.
+
