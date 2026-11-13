@@ -57,7 +57,7 @@ def load_env_file(path: Path = Path(".env")) -> None:
 
 # Choose any 3 of the 15 points, e.g. CHOSEN_POINTS = [1, 7, 15]. Your agent
 # gives a PASS or FAIL verdict on these 3 points only, with your own rule for each.
-CHOSEN_POINTS: list[int] = []  ### YOUR CODE HERE
+CHOSEN_POINTS: list[int] = [5, 6, 7]  ### YOUR CODE HERE
 
 
 def build_agent() -> Any:
@@ -71,8 +71,9 @@ def build_agent() -> Any:
     from .env. Each company has its own tools (see ``analyze_companies``), so
     you will probably create one tool-calling agent per company there.
     """
-    ### YOUR CODE HERE
-    return None
+    from langchain_deepseek import ChatDeepSeek
+
+    return ChatDeepSeek(model=MODEL_NAME, temperature=0, max_retries=2)
 
 
 async def analyze_companies(agent: Any, companies: dict[str, list[Any]]) -> dict[str, dict[str, Any]]:
@@ -108,9 +109,122 @@ async def analyze_companies(agent: Any, companies: dict[str, list[Any]]) -> dict
     entry for it: an exception here means no results.csv, which scores zero.
     You may analyse companies in parallel (e.g. ``asyncio.gather``).
     """
-    ### YOUR CODE HERE
-    _ = agent
-    return {name: {"points": {}, "summary": ""} for name in companies}
+    import re
+
+    periods = {
+        "FY2024": ("2024-01-01", "2025-01-01"),
+        "FY2025": ("2025-01-01", "2026-01-01"),
+        "H1_2025": ("2025-01-01", "2025-07-01"),
+        "H1_2026": ("2026-01-01", "2026-07-01"),
+    }
+    semaphore = asyncio.Semaphore(4)
+
+    async def query_one(sql_tool: Any, query: str) -> dict[str, str]:
+        result = str(await sql_tool.ainvoke({"query": query}))
+        if result.startswith("SQL error:") or "more rows not shown" in result:
+            raise ValueError(result)
+        lines = [line.strip() for line in result.splitlines() if line.strip()]
+        if len(lines) != 2 or lines[1] == "(no rows)":
+            raise ValueError(f"Unexpected SQL response: {result[:200]}")
+        keys = [cell.strip() for cell in lines[0].split("|")]
+        values = [cell.strip() for cell in lines[1].split("|")]
+        if len(keys) != len(values):
+            raise ValueError(f"Malformed SQL response: {result[:200]}")
+        return dict(zip(keys, values))
+
+    async def finances(sql_tool: Any) -> tuple[dict[str, float], str]:
+        industry = await query_one(
+            sql_tool,
+            "SELECT c.industry AS industry, m.operating_margin_pct AS median "
+            "FROM company c JOIN industry_medians m ON c.industry = m.industry LIMIT 1",
+        )
+        margins: dict[str, float] = {}
+        for label, (start, end) in periods.items():
+            row = await query_one(
+                sql_tool,
+                "SELECT "
+                f"(SELECT COALESCE(SUM(amount),0) FROM orders WHERE order_date >= '{start}' AND order_date < '{end}') AS revenue, "
+                f"(SELECT COALESCE(SUM(cost_of_sales),0) FROM monthly_costs WHERE month >= '{start[:7]}' AND month < '{end[:7]}') AS cost_of_sales, "
+                f"(SELECT COALESCE(SUM(selling_admin),0) FROM monthly_costs WHERE month >= '{start[:7]}' AND month < '{end[:7]}') AS selling_admin, "
+                f"(SELECT COALESCE(SUM(research_development),0) FROM monthly_costs WHERE month >= '{start[:7]}' AND month < '{end[:7]}') AS research_development, "
+                f"(SELECT COUNT(*) FROM monthly_costs WHERE month >= '{start[:7]}' AND month < '{end[:7]}') AS cost_months",
+            )
+            required_months = 6 if label.startswith("H1") else 12
+            if int(row["cost_months"]) != required_months:
+                raise ValueError(f"{label}: expected {required_months} cost months")
+            revenue = float(row["revenue"])
+            if revenue <= 0:
+                raise ValueError(f"{label}: no positive revenue")
+            cost = sum(float(row[key]) for key in ("cost_of_sales", "selling_admin", "research_development"))
+            margins[label] = 100 * (revenue - cost) / revenue
+        margins["industry_median"] = float(industry["median"])
+        return margins, industry["industry"]
+
+    async def judge_labor(interview_tool: Any) -> tuple[str, str]:
+        responses = [str(await interview_tool.ainvoke({
+            "role": "current_employee", "topic": "working_conditions"
+        }))]
+        if "can't comment" in responses[0].lower() or "cannot comment" in responses[0].lower():
+            responses.append(str(await interview_tool.ainvoke({
+                "role": "former_employee", "topic": "working_conditions"
+            })))
+        evidence = "\n".join(responses)
+        prompt = (
+            "Assess Fisher point 7, outstanding labor and personnel relations. "
+            "Use only this employee testimony. PASS means the testimony describes "
+            "good working conditions, fair treatment, and constructive staff relations; "
+            "FAIL means it describes substantial ongoing problems. "
+            "Return exactly JSON with keys verdict (PASS or FAIL) and reason (one short sentence).\n"
+            f"Testimony:\n{evidence}"
+        )
+        for attempt in range(2):
+            try:
+                response = await agent.ainvoke(prompt)
+                content = str(response.content).strip()
+                content = re.sub(r"^\x60\x60\x60(?:json)?\s*|\s*\x60\x60\x60$", "", content, flags=re.I)
+                value = json.loads(content)
+                verdict = value.get("verdict")
+                reason = value.get("reason")
+                if verdict in VERDICTS and isinstance(reason, str) and reason.strip():
+                    return verdict, reason.strip()
+            except Exception:
+                if attempt:
+                    raise
+        raise ValueError("Invalid labor assessment")
+
+    async def one_company(name: str, tools: list[Any]) -> tuple[str, dict[str, Any]]:
+        async with semaphore:
+            points: dict[int, str] = {}
+            notes: list[str] = []
+            sql_tool, interview_tool = tools[2], tools[3]
+            try:
+                margins, industry = await finances(sql_tool)
+                current = margins["FY2025"]
+                median = margins["industry_median"]
+                previous = margins["FY2024"]
+                points[5] = "PASS" if current > 0 and current >= median else "FAIL"
+                points[6] = "PASS" if current >= previous else "FAIL"
+                notes.append(
+                    f"FY2025 operating margin was {current:.2f}% versus the {industry} "
+                    f"median of {median:.2f}% and FY2024 margin of {previous:.2f}%. "
+                    f"H1 2026 margin was {margins['H1_2026']:.2f}% versus "
+                    f"{margins['H1_2025']:.2f}% in H1 2025."
+                )
+            except Exception as exc:
+                points[5] = points[6] = "FAIL"
+                notes.append(f"Financial evidence unavailable: {type(exc).__name__}.")
+            try:
+                points[7], reason = await judge_labor(interview_tool)
+                notes.append(f"Employee evidence: {reason}")
+            except Exception as exc:
+                points[7] = "FAIL"
+                notes.append(f"Employee evidence unavailable: {type(exc).__name__}.")
+            return name, {"points": points, "summary": " ".join(notes)}
+
+    results = await asyncio.gather(
+        *(one_company(name, tools) for name, tools in companies.items())
+    )
+    return dict(results)
 
 
 # Everything below is provided runner/scoring code. No edits are needed.

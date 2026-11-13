@@ -170,14 +170,47 @@ for each public company. Grading uses a private set of about 20 unseen
 companies with the same tools and the same answer key rules, but different
 names and wording, and scores your 3 points only.
 
-## Homework 3 solution:
-> to students: this is your report, see the homework description.
+## Homework 3 solution
 
-### My 3 points and rules
-> for each point: why you chose it, your PASS rule in one or two sentences, and the evidence it uses. Quote Fisher where it helps.
+I chose Fisher's points 5, 6, and 7 because I care about profitability in business operations and the effect of labor relations on a company's ability to operate. Point 5 asks whether the present margin is worthwhile. Point 6 asks whether that margin can be maintained or improved. Looking at both gives a clearer view of current profitability and its direction. Point 7 adds the people who sustain operations: working conditions, treatment, and communication can affect stability. The agent assesses each point on its own evidence; it does not infer that labor relations caused a particular margin change.
 
-### Design
-> a visualization of your agent design and one paragraph describing it.
+### My three PASS rules
 
-### Results
-> your point score on `public_test`, the companies where your verdicts disagree with the public answers, and why.
+| Point | PASS rule | Evidence |
+|---|---|---|
+| 5 — worthwhile profit margin | FY2025 operating margin is positive and at least the median operating margin of the company's own industry. | Aggregate FY2025 revenue from `orders`, aggregate matching costs from `monthly_costs`, and look up `industry_medians` through `sql_query`. |
+| 6 — maintaining or improving margins | FY2025 operating margin is at least FY2024 operating margin. The summary also shows the first-half 2026 versus first-half 2025 comparison as a recent trend check. | Use `sql_query` to aggregate revenue and costs for consistent periods; calculate both margins in Python. |
+| 7 — labor and personnel relations | An employee who knows the working conditions describes fair treatment, workable conditions, and constructive staff relations, without substantial ongoing problems. | Ask a current employee about `working_conditions` through `interview`. Ask a former employee only when the first answer cannot be used. DeepSeek interprets the testimony and returns a short reason. |
+
+Operating margin is 100 × (revenue − cost of sales − selling and admin − research and development) ÷ revenue. The database expresses all amounts in USD thousands, so the ratio needs no currency conversion. Annual margins are calculated from annual totals, not from an average of monthly percentages. A missing cost month or nonpositive revenue triggers an explicit evidence error.
+
+### Agent design
+
+```mermaid
+flowchart LR
+    A[Company tools] --> B[SQL aggregates for points 5 and 6]
+    A --> C[Employee interview for point 7]
+    B --> D[Python computes margins and applies fixed rules]
+    C --> E[DeepSeek v4 flash judges employee evidence]
+    D --> F[Validate three verdicts and write summary]
+    E --> F
+    F --> G[Provided runner writes results.csv]
+```
+
+`build_agent()` creates the required LangChain DeepSeek model once. `analyze_companies()` routes the two financial points to the read-only SQL tool and the labor point to the relevant interview tool. SQL returns aggregate totals; Python performs the arithmetic and fixed comparisons. The model interprets qualitative employee testimony and returns a structured PASS or FAIL with a reason. Each company's work is isolated, at most four companies run concurrently, and errors are caught per company so the provided runner can still write a complete CSV. The ordinary path uses one interview per company, well below the ten-interview limit. No company data is opened directly by student code.
+
+### Public results and limits
+
+The agent scored **60/60 point verdicts** on the 20 public companies, with a **100.0% balanced point score**. Three independent runs produced the same score. Each run used 20 interviews. There were **no companies whose verdicts disagreed** with `public_test/ground_truth.json` for points 5, 6, or 7. The public test does not establish the same accuracy on the private companies, whose names and wording differ.
+
+The first-half comparison is explanatory evidence for point 6; its verdict follows the stated full-year rule. Employee relations are judged from testimony, so changes in wording can affect the model's interpretation. If financial or interview evidence cannot be obtained, the agent records that failure in the summary and returns a conservative FAIL for the affected point. That fallback is an execution safeguard, not proof of poor company performance.
+
+### Reproducing the run
+
+Use Python 3.10 or newer. From a fresh clone, create a virtual environment, install `requirements.txt`, put your own `DEEPSEEK_API_KEY` in an ignored `.env`, then run:
+
+```sh
+python hw3.py --data-folder public_test
+```
+
+The command generates `results.csv` and prints the balanced score. It uses the required `deepseek-v4-flash` model and makes one API-backed labor assessment per company on the normal path. Do not publish the API key. The reflection for Task 2 is in [REFLECTION.md](REFLECTION.md).
