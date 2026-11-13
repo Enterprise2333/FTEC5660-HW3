@@ -144,16 +144,31 @@ not hard-code folder names, company names or the public answers.
 
 ## Setup and public test
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-echo "DEEPSEEK_API_KEY=your_key_here" > .env
-python3 hw3.py --data-folder public_test
+Clone the repository in any working directory. Use Python 3.10 or newer. Before running `hw3.py`, create a `.env` file in the repository root with `DEEPSEEK_API_KEY=your_key_here` and replace the placeholder with your own key from https://platform.deepseek.com.
+
+Windows PowerShell:
+
+```powershell
+git clone https://github.com/Enterprise2333/FTEC5660-HW3.git
+cd FTEC5660-HW3
+py -3 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python hw3.py --data-folder public_test
 ```
 
-Use your own DeepSeek API key (from https://platform.deepseek.com). The
-required model is `deepseek-v4-flash`. We grade with our own key, so never put
+macOS or Linux:
+
+```sh
+git clone https://github.com/Enterprise2333/FTEC5660-HW3.git
+cd FTEC5660-HW3
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python hw3.py --data-folder public_test
+```
+
+The required model is `deepseek-v4-flash`. We grade with our own key, so never put
 a key in your code; `.env` must stay out of git.
 
 The program creates `results.csv` with the columns `company`, `points`,
@@ -214,3 +229,4 @@ python hw3.py --data-folder public_test
 ```
 
 The command generates `results.csv` and prints the balanced score. It uses the required `deepseek-v4-flash` model and makes one API-backed labor assessment per company on the normal path. Do not publish the API key. The reflection for Task 2 is in [REFLECTION.md](REFLECTION.md).
+
