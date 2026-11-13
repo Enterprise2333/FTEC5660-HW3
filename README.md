@@ -137,7 +137,7 @@ provided code below them:
 
 Use the course techniques that fit your points: tool use for the database and
 the interviews, planning which interviews to spend, routing each point to the
-right source, prompt chaining, parallel calls, reflection to check your
+right source, prompt chaining, parallel calls, checking your
 answers, or a combination. Your code must read company data **only through
 the four tools**; do not open `company.db` or `interviews.dat` yourself. Do
 not hard-code folder names, company names or the public answers.
@@ -245,7 +245,7 @@ Use Python 3.10 or newer. From a fresh clone, create a virtual environment, inst
 python hw3.py --data-folder public_test
 ```
 
-The command generates `results.csv` and prints the balanced score. It uses the required `deepseek-v4-flash` model and makes one API-backed labor assessment per company on the normal path. Do not publish the API key. The reflection for Task 2 is in [REFLECTION.md](REFLECTION.md).
+The command generates `results.csv` and prints the balanced score. It uses the required `deepseek-v4-flash` model and makes one API-backed labor assessment per company on the normal path. Do not publish the API key.
 
 Run `python -m unittest test_resilience -v` for the offline regression checks. These tests use simulated tools and model responses, require no API key, and cover request retries, company and batch deadlines, cancellation, and independent financial evidence failures.
 
