@@ -59,6 +59,15 @@ def load_env_file(path: Path = Path(".env")) -> None:
 # gives a PASS or FAIL verdict on these 3 points only, with your own rule for each.
 CHOSEN_POINTS: list[int] = [5, 6, 7]  ### YOUR CODE HERE
 
+# SDK retries are disabled so the two application attempts share one budget.
+REQUEST_TIMEOUT_SECONDS = 45
+TOOL_TIMEOUT_SECONDS = 10
+COMPANY_TIMEOUT_SECONDS = 180
+BATCH_TIMEOUT_SECONDS = 1200
+LABOR_ATTEMPTS = 2
+RETRY_DELAY_SECONDS = 1
+COMPANY_CONCURRENCY = 4
+
 
 def build_agent() -> Any:
     """Create and return your model or agent once.
@@ -73,7 +82,10 @@ def build_agent() -> Any:
     """
     from langchain_deepseek import ChatDeepSeek
 
-    return ChatDeepSeek(model=MODEL_NAME, temperature=0, max_retries=2)
+    return ChatDeepSeek(
+        model=MODEL_NAME, temperature=0,
+        timeout=REQUEST_TIMEOUT_SECONDS, max_retries=0,
+    )
 
 
 async def analyze_companies(agent: Any, companies: dict[str, list[Any]]) -> dict[str, dict[str, Any]]:
@@ -117,10 +129,15 @@ async def analyze_companies(agent: Any, companies: dict[str, list[Any]]) -> dict
         "H1_2025": ("2025-01-01", "2025-07-01"),
         "H1_2026": ("2026-01-01", "2026-07-01"),
     }
-    semaphore = asyncio.Semaphore(4)
+    semaphore = asyncio.Semaphore(COMPANY_CONCURRENCY)
+
+    async def call_tool(tool: Any, arguments: dict[str, Any]) -> str:
+        return str(await asyncio.wait_for(
+            tool.ainvoke(arguments), timeout=TOOL_TIMEOUT_SECONDS,
+        ))
 
     async def query_one(sql_tool: Any, query: str) -> dict[str, str]:
-        result = str(await sql_tool.ainvoke({"query": query}))
+        result = await call_tool(sql_tool, {"query": query})
         if result.startswith("SQL error:") or "more rows not shown" in result:
             raise ValueError(result)
         lines = [line.strip() for line in result.splitlines() if line.strip()]
@@ -132,15 +149,9 @@ async def analyze_companies(agent: Any, companies: dict[str, list[Any]]) -> dict
             raise ValueError(f"Malformed SQL response: {result[:200]}")
         return dict(zip(keys, values))
 
-    async def finances(sql_tool: Any) -> tuple[dict[str, float], str]:
-        industry = await query_one(
-            sql_tool,
-            "SELECT c.industry AS industry, m.operating_margin_pct AS median "
-            "FROM company c JOIN industry_medians m ON c.industry = m.industry LIMIT 1",
-        )
-        margins: dict[str, float] = {}
-        for label, (start, end) in periods.items():
-            row = await query_one(
+    async def margin(sql_tool: Any, label: str) -> float:
+        start, end = periods[label]
+        row = await query_one(
                 sql_tool,
                 "SELECT "
                 f"(SELECT COALESCE(SUM(amount),0) FROM orders WHERE order_date >= '{start}' AND order_date < '{end}') AS revenue, "
@@ -148,26 +159,24 @@ async def analyze_companies(agent: Any, companies: dict[str, list[Any]]) -> dict
                 f"(SELECT COALESCE(SUM(selling_admin),0) FROM monthly_costs WHERE month >= '{start[:7]}' AND month < '{end[:7]}') AS selling_admin, "
                 f"(SELECT COALESCE(SUM(research_development),0) FROM monthly_costs WHERE month >= '{start[:7]}' AND month < '{end[:7]}') AS research_development, "
                 f"(SELECT COUNT(*) FROM monthly_costs WHERE month >= '{start[:7]}' AND month < '{end[:7]}') AS cost_months",
-            )
-            required_months = 6 if label.startswith("H1") else 12
-            if int(row["cost_months"]) != required_months:
-                raise ValueError(f"{label}: expected {required_months} cost months")
-            revenue = float(row["revenue"])
-            if revenue <= 0:
-                raise ValueError(f"{label}: no positive revenue")
-            cost = sum(float(row[key]) for key in ("cost_of_sales", "selling_admin", "research_development"))
-            margins[label] = 100 * (revenue - cost) / revenue
-        margins["industry_median"] = float(industry["median"])
-        return margins, industry["industry"]
+        )
+        required_months = 6 if label.startswith("H1") else 12
+        if int(row["cost_months"]) != required_months:
+            raise ValueError(f"{label}: expected {required_months} cost months")
+        revenue = float(row["revenue"])
+        if revenue <= 0:
+            raise ValueError(f"{label}: no positive revenue")
+        cost = sum(float(row[key]) for key in ("cost_of_sales", "selling_admin", "research_development"))
+        return 100 * (revenue - cost) / revenue
 
     async def judge_labor(interview_tool: Any) -> tuple[str, str]:
-        responses = [str(await interview_tool.ainvoke({
+        responses = [await call_tool(interview_tool, {
             "role": "current_employee", "topic": "working_conditions"
-        }))]
+        })]
         if "can't comment" in responses[0].lower() or "cannot comment" in responses[0].lower():
-            responses.append(str(await interview_tool.ainvoke({
+            responses.append(await call_tool(interview_tool, {
                 "role": "former_employee", "topic": "working_conditions"
-            })))
+            }))
         evidence = "\n".join(responses)
         prompt = (
             "Assess Fisher point 7, outstanding labor and personnel relations. "
@@ -177,9 +186,11 @@ async def analyze_companies(agent: Any, companies: dict[str, list[Any]]) -> dict
             "Return exactly JSON with keys verdict (PASS or FAIL) and reason (one short sentence).\n"
             f"Testimony:\n{evidence}"
         )
-        for attempt in range(2):
+        for attempt in range(LABOR_ATTEMPTS):
             try:
-                response = await agent.ainvoke(prompt)
+                response = await asyncio.wait_for(
+                    agent.ainvoke(prompt), timeout=REQUEST_TIMEOUT_SECONDS,
+                )
                 content = str(response.content).strip()
                 content = re.sub(r"^\x60\x60\x60(?:json)?\s*|\s*\x60\x60\x60$", "", content, flags=re.I)
                 value = json.loads(content)
@@ -187,44 +198,90 @@ async def analyze_companies(agent: Any, companies: dict[str, list[Any]]) -> dict
                 reason = value.get("reason")
                 if verdict in VERDICTS and isinstance(reason, str) and reason.strip():
                     return verdict, reason.strip()
+                raise ValueError("Invalid labor assessment")
             except Exception:
-                if attempt:
+                if attempt + 1 == LABOR_ATTEMPTS:
                     raise
+                await asyncio.sleep(RETRY_DELAY_SECONDS)
         raise ValueError("Invalid labor assessment")
 
-    async def one_company(name: str, tools: list[Any]) -> tuple[str, dict[str, Any]]:
-        async with semaphore:
-            points: dict[int, str] = {}
-            notes: list[str] = []
-            sql_tool, interview_tool = tools[2], tools[3]
-            try:
-                margins, industry = await finances(sql_tool)
-                current = margins["FY2025"]
-                median = margins["industry_median"]
-                previous = margins["FY2024"]
-                points[5] = "PASS" if current > 0 and current >= median else "FAIL"
-                points[6] = "PASS" if current >= previous else "FAIL"
-                notes.append(
-                    f"FY2025 operating margin was {current:.2f}% versus the {industry} "
-                    f"median of {median:.2f}% and FY2024 margin of {previous:.2f}%. "
-                    f"H1 2026 margin was {margins['H1_2026']:.2f}% versus "
-                    f"{margins['H1_2025']:.2f}% in H1 2025."
-                )
-            except Exception as exc:
-                points[5] = points[6] = "FAIL"
-                notes.append(f"Financial evidence unavailable: {type(exc).__name__}.")
-            try:
-                points[7], reason = await judge_labor(interview_tool)
-                notes.append(f"Employee evidence: {reason}")
-            except Exception as exc:
-                points[7] = "FAIL"
-                notes.append(f"Employee evidence unavailable: {type(exc).__name__}.")
-            return name, {"points": points, "summary": " ".join(notes)}
+    # Progress lives outside cancellable tasks, so deadlines retain completed points.
+    states = {name: {"points": {}, "notes": []} for name in companies}
 
-    results = await asyncio.gather(
-        *(one_company(name, tools) for name, tools in companies.items())
-    )
-    return dict(results)
+    async def analyze_one(tools: list[Any], state: dict[str, Any]) -> None:
+        points, notes = state["points"], state["notes"]
+        sql_tool, interview_tool = tools[2], tools[3]
+        margins: dict[str, float] = {}
+        for label in ("FY2025", "FY2024"):
+            try:
+                margins[label] = await margin(sql_tool, label)
+                notes.append(f"{label} operating margin was {margins[label]:.2f}%.")
+            except Exception as exc:
+                notes.append(f"{label} evidence unavailable: {type(exc).__name__}.")
+        # Point 6 has no dependency on the industry lookup or optional half-year data.
+        if "FY2025" in margins and "FY2024" in margins:
+            points[6] = "PASS" if margins["FY2025"] >= margins["FY2024"] else "FAIL"
+        else:
+            points[6] = "FAIL"
+        try:
+            if "FY2025" not in margins:
+                raise ValueError("FY2025 evidence unavailable")
+            industry = await query_one(
+                sql_tool,
+                "SELECT c.industry AS industry, m.operating_margin_pct AS median "
+                "FROM company c JOIN industry_medians m ON c.industry = m.industry LIMIT 1",
+            )
+            current, median = margins["FY2025"], float(industry["median"])
+            points[5] = "PASS" if current > 0 and current >= median else "FAIL"
+            notes.append(f"The {industry['industry']} industry median was {median:.2f}%.")
+        except Exception as exc:
+            points[5] = "FAIL"
+            notes.append(f"Point 5 comparison unavailable: {type(exc).__name__}.")
+        try:
+            points[7], reason = await judge_labor(interview_tool)
+            notes.append(f"Employee evidence: {reason}")
+        except Exception as exc:
+            points[7] = "FAIL"
+            notes.append(f"Employee evidence unavailable: {type(exc).__name__}.")
+        # Supplementary evidence cannot overwrite any of the three verdicts.
+        try:
+            previous_half = await margin(sql_tool, "H1_2025")
+            current_half = await margin(sql_tool, "H1_2026")
+            notes.append(f"H1 2026 margin was {current_half:.2f}% versus {previous_half:.2f}% in H1 2025.")
+        except Exception as exc:
+            notes.append(f"Supplementary half-year evidence unavailable: {type(exc).__name__}.")
+
+    async def one_company(name: str, tools: list[Any]) -> None:
+        async with semaphore:
+            try:
+                await asyncio.wait_for(
+                    analyze_one(tools, states[name]), timeout=COMPANY_TIMEOUT_SECONDS,
+                )
+            except asyncio.TimeoutError:
+                states[name]["notes"].append("Company time limit reached; completed verdicts retained.")
+            except Exception as exc:
+                states[name]["notes"].append(f"Company processing unavailable: {type(exc).__name__}.")
+
+    tasks = {asyncio.create_task(one_company(name, tools)): name for name, tools in companies.items()}
+    if tasks:
+        try:
+            _, pending = await asyncio.wait(tasks, timeout=BATCH_TIMEOUT_SECONDS)
+            for task in pending:
+                states[tasks[task]]["notes"].append("Batch time limit reached; completed verdicts retained.")
+                task.cancel()
+        finally:
+            for task in tasks:
+                if not task.done():
+                    task.cancel()
+            await asyncio.gather(*tasks, return_exceptions=True)
+    results = {}
+    for name, state in states.items():
+        for point in CHOSEN_POINTS:
+            if point not in state["points"]:
+                state["points"][point] = "FAIL"
+                state["notes"].append(f"Point {point} unassessed; conservative FAIL.")
+        results[name] = {"points": state["points"], "summary": " ".join(state["notes"])}
+    return results
 
 
 # Everything below is provided runner/scoring code. No edits are needed.

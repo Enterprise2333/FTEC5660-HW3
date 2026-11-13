@@ -214,6 +214,10 @@ flowchart LR
 
 `build_agent()` creates the required LangChain DeepSeek model once. `analyze_companies()` routes the two financial points to the read-only SQL tool and the labor point to the relevant interview tool. SQL returns aggregate totals; Python performs the arithmetic and fixed comparisons. The model interprets qualitative employee testimony and returns a structured PASS or FAIL with a reason. Each company's work is isolated, at most four companies run concurrently, and errors are caught per company so the provided runner can still write a complete CSV. The ordinary path uses one interview per company, well below the ten-interview limit. No company data is opened directly by student code.
 
+Each model attempt has a 45-second deadline, with at most two attempts and a one-second pause between them. SDK retries are disabled to prevent retries from multiplying. Tool calls have a 10-second deadline. Each company has three minutes after acquiring a worker slot; the whole analysis batch has a 20-minute deadline, including waiting companies. When a deadline is reached, unfinished tasks are cancelled and completed verdicts are retained. Unassessed points receive an explicitly labelled conservative FAIL so the runner can write every company's entry.
+
+Financial evidence is handled independently. Point 5 needs FY2025 data and its industry median; point 6 needs FY2024 and FY2025 data. A missing industry median therefore does not invalidate point 6, and missing FY2024 data does not invalidate point 5. The half-year comparison is supplementary and cannot overwrite either verdict.
+
 ### Public results and limits
 
 The agent scored **60/60 point verdicts** on the 20 public companies, with a **100.0% balanced point score**. Three independent runs produced the same score. Each run used 20 interviews. There were **no companies whose verdicts disagreed** with `public_test/ground_truth.json` for points 5, 6, or 7. The public test does not establish the same accuracy on the private companies, whose names and wording differ.
@@ -229,4 +233,6 @@ python hw3.py --data-folder public_test
 ```
 
 The command generates `results.csv` and prints the balanced score. It uses the required `deepseek-v4-flash` model and makes one API-backed labor assessment per company on the normal path. Do not publish the API key. The reflection for Task 2 is in [REFLECTION.md](REFLECTION.md).
+
+Run `python -m unittest test_resilience -v` for the offline regression checks. These tests use simulated tools and model responses, require no API key, and cover request retries, company and batch deadlines, cancellation, and independent financial evidence failures.
 
